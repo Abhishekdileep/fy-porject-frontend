@@ -1,11 +1,44 @@
 import React from 'react';
 import { Text , View , Image, ImageEditor, TextInput } from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
-// import navigate from '../navigations/Navigator'
+
 
 export default class Login extends React.Component{
     render(){
-        const {navigate} = this.props.navigation
+    const {navigate} = this.props.navigation
+
+        function enter(){
+            const requestOptions = {
+                    method: 'POST',
+                    headers: {  
+                                'Accept-type' : 'application/json  , text/plain , */* ' ,
+                                'Content-Type': 'application/json' ,
+                            },
+                    body: JSON.stringify({ "username": 'joemama@gmail.com' , "password" : 'password' } ) 
+                };
+            try{
+                fetch('http://192.168.43.237:3000/login/', requestOptions )
+                .then( res => res.text() )
+                .then(
+                    (result)=>{
+                            console.log(result)
+                            try{
+                            navigate('Camera');
+                            }catch(err){
+                                console.log(err);
+                            }
+                            console.log('completed');
+                    },
+                    (error)=>{
+                        console.log(error);
+                    }
+                    )
+                }
+            catch(err){
+                      console.log('Network error');
+                    }
+            }
+
         return (
             <View style={{backgroundColor :"#FFF" ,height : "100%"}}>
                 <Image 
@@ -26,7 +59,7 @@ export default class Login extends React.Component{
                     marginTop:5,
                     opacity:0.4
                 }}>
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.
+                Amet minim mollit non deserunt ullamco est sitr aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.
                 </Text>
 
                 <View style={{
@@ -71,31 +104,7 @@ export default class Login extends React.Component{
                     paddingVertical:10,
                     borderRadius:23
                 }}>
-                    <Text onPress={
-                        ()=>{
-                            const requestOptions = {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'multipart/form-data' ,
-                                            'Accept' : "application/json" },
-                                    body: JSON.stringify({ username: 'abhishekdileep99@gmail.com' , password : 'as192sbv' })
-                                };
-                             
-                            try{
-                                fetch('http://192.168.43.237:3000/login', requestOptions ).then( res => res.json() )
-                                .then(
-                                    (result)=>{
-                                          console.log(result);
-                                    },
-                                    (error)=>{
-                                        console.log("error"+error);
-                                    }
-                                    )
-                                }
-                            catch(err){
-                                      console.log('Network error');
-                                    }
-                            }   
-                    } 
+                    <Text onPress={enter} 
                     style={{
                         color:"white",
                         fontFamily:"SemiBold"

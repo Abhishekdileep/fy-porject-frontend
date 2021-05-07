@@ -37,7 +37,7 @@ export default class App extends React.Component {
 //     }
 render(){
   return (
-    (this.state.isFontLoaded === true) ? (<AppNavigator/>):(<Text> Loading </Text>)
+    (this.state.isFontLoaded === true) ? (<AppNavigator/>):(<Text> Loading </Text>) //Need to check the app loading Issue 
     
   );
 }
