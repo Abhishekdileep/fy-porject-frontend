@@ -17,7 +17,7 @@ export default class Login extends React.Component{
                     body: JSON.stringify({ "username": 'joemama@gmail.com' , "password" : 'password' } ) 
                 };
             try{
-                fetch('http://192.168.43.237:3000/login/', requestOptions )
+                fetch('http://172.17.1.162:3000/login/', requestOptions )
                 .then( res => res.text() )
                 .then(
                     (result)=>{
@@ -51,21 +51,10 @@ export default class Login extends React.Component{
                     alignSelf : "center"
                 }}>Login</Text>
 
-                <Text
-                style={{
-                    fontFamily:"SemiBold",
-                    marginHorizontal:55,
-                    textAlign:'center',
-                    marginTop:5,
-                    opacity:0.4
-                }}>
-                Amet minim mollit non deserunt ullamco est sitr aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.
-                </Text>
-
                 <View style={{
                     flexDirection : "row",
                     alignItems : "center",
-                    marginHorizontal:55,
+                    marginHorizontal:45,
                     borderWidth:2,
                     marginTop:20,
                     paddingHorizontal:10,
@@ -92,7 +81,7 @@ export default class Login extends React.Component{
                 }}>
                     <Icon name='lock' color='#00716F' size={24} />
                     <TextInput 
-                        style={{paddingHorizontal :10}} />
+                        style={{paddingHorizontal :10}} secureTextEntry={true}/>
                     
                 </View>
                 <View style={{
