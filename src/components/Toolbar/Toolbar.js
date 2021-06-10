@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 
-import styles from './styles';
+import styles from '../styles';
 
 const { FlashMode: CameraFlashModes, Type: CameraTypes } = Camera.Constants;
 
@@ -14,11 +14,12 @@ export default ({
     flashMode = CameraFlashModes.off, 
     setFlashMode, setCameraType, 
     onCaptureIn, onCaptureOut, onLongCapture, onShortCapture, 
+    isScanning
 }) => (
     <Grid style={styles.bottomToolbar}>
         <Row>
             <Col style={styles.alignCenter}>
-                <TouchableOpacity onPress={() => setFlashMode( 
+                <TouchableOpacity disabled={isScanning} onPress={() => setFlashMode( 
                     flashMode === CameraFlashModes.on ? CameraFlashModes.off : CameraFlashModes.on 
                 )}>
                     <Ionicons
@@ -30,6 +31,7 @@ export default ({
             </Col>
             <Col size={2} style={styles.alignCenter}>
                 <TouchableWithoutFeedback
+                    disabled={isScanning}
                     onPressIn={onCaptureIn}
                     onPressOut={onCaptureOut}
                     onLongPress={onLongCapture}
@@ -40,7 +42,7 @@ export default ({
                 </TouchableWithoutFeedback>
             </Col>
             <Col style={styles.alignCenter}>
-                <TouchableOpacity onPress={() => setCameraType(
+                <TouchableOpacity disabled={isScanning} onPress={() => setCameraType(
                     cameraType === CameraTypes.back ? CameraTypes.front : CameraTypes.back
                 )}>
                     <Ionicons

@@ -2,7 +2,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import Login from '../screens/Login'
 import Register from '../screens/Register'
-import CameraPage from '../screens/Camera/camera.page'
+import CameraPage from '../screens/CameraPage'
 
 
 const stackNavigatorOptions = {

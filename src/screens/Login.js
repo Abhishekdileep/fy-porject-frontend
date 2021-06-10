@@ -2,10 +2,11 @@ import React from 'react';
 import { Text , View , Image, ImageEditor, TextInput } from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
 
-
-export default class Login extends React.Component{
-    render(){
-    const {navigate} = this.props.navigation
+export default function Login(props) {
+    const [username , setUsername] = React.useState('');
+    const [password , setPassword] = React.useState('');
+    
+    const {navigation} = props
 
         function enter(){
             const requestOptions = {
@@ -14,16 +15,16 @@ export default class Login extends React.Component{
                                 'Accept-type' : 'application/json  , text/plain , */* ' ,
                                 'Content-Type': 'application/json' ,
                             },
-                    body: JSON.stringify({ "username": 'joemama@gmail.com' , "password" : 'password' } ) 
+                    body: JSON.stringify({ "username": username , "password" : password } ) 
                 };
             try{
-                fetch('http://172.17.1.162:3000/login/', requestOptions )
+                fetch('http://192.168.43.237:3000/login/', requestOptions )
                 .then( res => res.text() )
                 .then(
                     (result)=>{
                             console.log(result)
                             try{
-                            navigate('Camera');
+                            navigation.navigate('Camera');
                             }catch(err){
                                 console.log(err);
                             }
@@ -62,9 +63,9 @@ export default class Login extends React.Component{
                     borderRadius:23,
                     paddingVertical:2
                 }}>
-                    <Icon name='mail' color='#00716F' size={24} />
+                         <Icon name='mail' color='#00716F' size={24} />
                     <TextInput 
-                        style={{paddingHorizontal :10}} />
+                     value={username} onChangeText={text =>setUsername(text)}   style={{paddingHorizontal :10}} />
                     
                 </View>
                 
@@ -81,7 +82,7 @@ export default class Login extends React.Component{
                 }}>
                     <Icon name='lock' color='#00716F' size={24} />
                     <TextInput 
-                        style={{paddingHorizontal :10}} secureTextEntry={true}/>
+                      value={password} onChangeText={text => setPassword(text)} style={{paddingHorizontal :10}} secureTextEntry={true}/>
                     
                 </View>
                 <View style={{
@@ -102,7 +103,7 @@ export default class Login extends React.Component{
 
                 <Text 
                 
-                onPress={()=>navigate('Register')}
+                onPress={()=>navigation.navigate('Register')}
                 
                 style={{
                     alignSelf:"center",
@@ -113,5 +114,5 @@ export default class Login extends React.Component{
                     
             </View>
         )
-    }
+    
 }

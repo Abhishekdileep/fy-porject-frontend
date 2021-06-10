@@ -2,9 +2,42 @@ import React from 'react';
 import {Text,View,Image, TextInput} from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
 
-export default class Register extends React.Component{
+export default function Register(){
 
-    render(){
+    const [email , setEmail ] = React.useState('');
+    const [password , setPassword] = React.useState('');
+    const [confirmpass , setConfirmpass ] = React.useState('');
+
+        function registerFunc(){
+            const requestOptions = {
+                method: 'POST',
+                headers: {  
+                            'Accept-type' : 'application/json  , text/plain , */* ' ,
+                            'Content-Type': 'application/json' ,
+                        },
+                body: JSON.stringify({ "username": username , "password" : password } ) 
+            };
+        try{
+            fetch('http://192.168.43.237:3000/Register/', requestOptions )
+            .then( res => res.text())
+            .then( (result)=>{
+                        console.log(result)
+                        try{
+                        navigation.navigate('Login');
+                        }catch(err){
+                            console.log(err);
+                        }
+                        console.log('completed');
+                },
+                (error)=>{
+                    console.log(error);
+                }
+                )
+            }
+        catch(err){
+                  console.log('Network error');
+                }
+        }
         
         return(
             <View style={{backgroundColor:"#FFF",height:"100%"}}>
@@ -47,6 +80,7 @@ export default class Register extends React.Component{
                         placeholder="Email"
                         placeholderTextColor="#00716F"
                         style={{paddingHorizontal:10}}
+                        onChangeText={text => setEmail(text) }
                     />
 
                     
@@ -69,6 +103,7 @@ export default class Register extends React.Component{
                         placeholder="Password"
                         placeholderTextColor="#00716F"
                         style={{paddingHorizontal:10}}
+                        onChangeText = {text => setPassword(text) }
                     />
 
 
@@ -92,6 +127,7 @@ export default class Register extends React.Component{
                         placeholder="Confirm Password"
                         placeholderTextColor="#00716F"
                         style={{paddingHorizontal:10}}
+                        onChangeText={text => setConfirmpass(text) }
                     />
                     
 
@@ -109,10 +145,12 @@ export default class Register extends React.Component{
                     <Text style={{
                         color:"white",
                         fontFamily:"SemiBold"
-                    }}>Register</Text>
+                    }}
+                    onPress={registerFunc}
+                    >Register</Text>
                 </View>
               
             </View>
         )
-    }
+    
 }

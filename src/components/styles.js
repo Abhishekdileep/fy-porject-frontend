@@ -70,5 +70,56 @@ export default StyleSheet.create({
         flexDirection:"row",
         justifyContent:"center",
         alignItems:"center"
+    },
+    queueScannerContainer:{
+        paddingHorizontal:32,
+        paddingVertical:64,
+        flexDirection:"row",
+        justifyContent:"space-between"
+    },
+    recordsToggleButton:{
+        alignSelf: "flex-end",
+        padding: 16,
+        backgroundColor:"#fff",
+        borderTopLeftRadius: 50,
+        borderBottomLeftRadius: 50
+    },
+    recordContainer:{
+        height:"100%",
+        paddingBottom: 48
+    },
+    fixedModalButton:{
+        position:"absolute",
+        bottom:0,
+        left:0,
+        backgroundColor:"#000",
+        padding: 16,
+        width:"100%",
+    },
+    recordItem:{
+        padding: 16,
+        borderRadius: 5,
+        marginHorizontal: 8,
+        marginVertical: 4,
+        backgroundColor:"#fff"
+    },  
+    recordTitle:{
+        fontWeight:"bold",
+        color:"#686d76"
+    },
+    closeModalButton:{
+        color:"#fff",
+        textAlign:"center",
+        fontWeight:"bold"
+    },
+    recordModal:{
+        height: 300,
+        marginTop: 128,
+        width:"80%",
+        backgroundColor:"#fff",
+        alignSelf:"center",
+        padding: 8,
+        borderWidth:.5,
+        borderColor:"#dee1e4"
     }
 });
