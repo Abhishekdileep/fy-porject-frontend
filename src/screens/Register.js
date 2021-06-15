@@ -31,6 +31,7 @@ export default function Register(){
                 },
                 (error)=>{
                     console.log(error);
+                    alert("Error User already exisits ")
                 }
                 )
             }
