@@ -63,9 +63,8 @@ export default function Login(props) {
                     borderRadius:23,
                     paddingVertical:2
                 }}>
-                         <Icon name='mail' color='#00716F' size={24} />
-                    <TextInput 
-                     value={username} onChangeText={text =>setUsername(text)}   style={{paddingHorizontal :10}} />
+                    <Icon name='mail' color='#00716F' size={24} />
+                    <TextInput value={username} onChangeText={text =>setUsername(text)}   style={{paddingHorizontal :10}} />
                     
                 </View>
                 
